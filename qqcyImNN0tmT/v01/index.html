@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>第 1 集｜QGIS 從零開始：自己畫宜蘭大溪溪流域範圍圖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">GIS 系列教學</a>
+  <a class="nav-back" href="../">← 全部影片</a>
+</div></header>
+
+<main class="wrap">
+  <section class="hero" style="padding-bottom:0">
+    <span class="kicker">第 1 集 · QGIS 3.44</span>
+    <h1>QGIS 從零開始：自己畫宜蘭大溪溪流域範圍圖</h1>
+    <p class="lead">只用免費的 QGIS 和政府公開資料，從 20 公尺 DEM 做水文分析，切出大溪溪的流域範圍，最後排版輸出一張 A4 橫向、比例尺 1:30,000 的流域範圍圖。</p>
+  </section>
+
+  <section class="player">
+    <video id="v" controls preload="metadata" playsinline poster="../../assets/v01-poster.jpg">
+      <source src="https://github.com/A3218654/lessons/releases/download/v01/daxi-watershed-qgis.mp4" type="video/mp4">
+      你的瀏覽器無法播放影片，請改用下方按鈕下載觀看。
+    </video>
+    <div class="actions">
+      <a class="btn" href="https://github.com/A3218654/lessons/releases/download/v01/daxi-watershed-qgis.mp4" download>下載影片（MP4，170 MB）</a>
+      <span class="note">建議用電腦觀看，畫面中的 QGIS 選單文字比較清楚。</span>
+    </div>
+  </section>
+
+  <section class="cols">
+    <div class="panel">
+      <h2>章節</h2>
+      <ol class="chapters" id="chapters">
+        <li><button data-t="0"><span class="t">00:00</span><span class="n">開場與成果預覽</span></button></li>
+        <li><button data-t="49"><span class="t">00:49</span><span class="n">流程總覽與為什麼要自己畫<span class="s">需要的工具與資料</span></span></button></li>
+        <li><button data-t="130"><span class="t">02:10</span><span class="n">下載與整理資料</span></button></li>
+        <li><button data-t="158"><span class="t">02:38</span><span class="n">建立專案與座標系統<span class="s">步驟 1–5</span></span></button></li>
+        <li><button data-t="312"><span class="t">05:12</span><span class="n">載入與裁切<span class="s">步驟 6–9</span></span></button></li>
+        <li><button data-t="446"><span class="t">07:26</span><span class="n">水文分析<span class="s">步驟 10–18</span></span></button></li>
+        <li><button data-t="678"><span class="t">11:18</span><span class="n">底圖與樣式<span class="s">步驟 19–21</span></span></button></li>
+        <li><button data-t="795"><span class="t">13:15</span><span class="n">排版出圖<span class="s">步驟 22–26</span></span></button></li>
+        <li><button data-t="1008"><span class="t">16:48</span><span class="n">驗證、常見錯誤與延伸應用</span></button></li>
+      </ol>
+    </div>
+
+    <div>
+      <div class="panel">
+        <h2>這集會用到</h2>
+        <dl class="facts">
+          <dt>軟體</dt><dd>QGIS 3.44（含 GRASS 工具）</dd>
+          <dt>座標系統</dt><dd>TWD97 / TM2（EPSG:3826）</dd>
+          <dt>成果</dt><dd>A4 橫向流域範圍圖，PNG 300 dpi 與 PDF</dd>
+          <dt>長度</dt><dd>18 分 16 秒</dd>
+        </dl>
+      </div>
+      <div class="panel">
+        <h2>資料來源</h2>
+        <ul class="src">
+          <li>內政部：20 公尺網格數值地形模型 DEM（2022 年版）</li>
+          <li>農業部：子集水區圖層（110 年度）</li>
+          <li>經濟部水利署：河川線、河川水域面</li>
+          <li>國土測繪中心：臺灣通用電子地圖（灰階）WMTS</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site"><div class="wrap">本頁僅提供給收到連結的學員，請勿公開轉貼。</div></footer>
+
+<script>
+  const v = document.getElementById('v');
+  const btns = [...document.querySelectorAll('#chapters button')];
+  btns.forEach(b => b.addEventListener('click', () => {
+    v.currentTime = +b.dataset.t;
+    v.play();
+    v.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }));
+  v.addEventListener('timeupdate', () => {
+    let cur = 0;
+    btns.forEach((b, i) => { if (v.currentTime >= +b.dataset.t) cur = i; });
+    btns.forEach((b, i) => b.classList.toggle('on', i === cur));
+  });
+</script>
+</body>
+</html>
